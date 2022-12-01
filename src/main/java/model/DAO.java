@@ -57,15 +57,15 @@ public class DAO {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read);
 			ResultSet rs = pst.executeQuery();
-			// o laço abaixo será executado enquanto houver contatos
+			// O laço abaixo será executado enquanto houver contatos
 			while (rs.next()) {
-				// variáveis de apoio que recebem dados do banco
+				// Variáveis de apoio que recebem dados do banco
 				String idcon = rs.getString(1);
 				String nome = rs.getString(2);
 				String fone = rs.getString(3);
 				String email = rs.getString(4);
-				// populando o ArrayList
-				contatos.add(new JavaBeans(idcon, nome, fone, email));
+				// Populando o ArrayList
+				contatos.add(new JavaBeans(idcon,nome,fone,email));
 			}
 			con.close();
 			return contatos;
