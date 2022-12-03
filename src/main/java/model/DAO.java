@@ -6,14 +6,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DAO.
+ */
 public class DAO {
-	/** Módulo de conexão **/
+	
+	/**  Módulo de conexão *. */
 	// Parâmetro de conexão
 	private String driver = "com.mysql.cj.jdbc.Driver";
+	
+	/** The url. */
 	private String url = "jdbc:mysql://127.0.0.1:3306/dbagenda?useTimezone=true&serverTimezone=UTC";
+	
+	/** The user. */
 	private String user = "root";
+	
+	/** The password. */
 	private String password = "123456";
 
+	/**
+	 * Conectar.
+	 *
+	 * @return the connection
+	 */
 	// Método de conexão
 	private Connection conectar() {
 		Connection con = null;
@@ -27,7 +43,11 @@ public class DAO {
 		}
 	}
 
-	/** CRUD CREATE **/
+	/**
+	 *  CRUD CREATE *.
+	 *
+	 * @param contato the contato
+	 */
 	public void inserirContato(JavaBeans contato) {
 		String create = "insert into contatos (nome, fone, email) values (?,?,?)";
 		try {
@@ -48,7 +68,11 @@ public class DAO {
 		}
 	}
 
-	/** CRUD READ **/
+	/**
+	 *  CRUD READ *.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<JavaBeans> listarContatos() {
 		// Criando um objeto para acessar a classe JavaBeans
 		ArrayList<JavaBeans> contatos = new ArrayList<>();
@@ -76,6 +100,11 @@ public class DAO {
 	}
 
 	// ** CRUD UPDATE ** //
+	/**
+	 * Selecionar contato.
+	 *
+	 * @param contato the contato
+	 */
 	// Selecionar o contato
 	public void selecionarContato(JavaBeans contato) {
 		String read2 = "select * from contatos where idcon = ?";
@@ -98,12 +127,17 @@ public class DAO {
 		}
 	}
 	
+	/**
+	 * Alterar contato.
+	 *
+	 * @param contato the contato
+	 */
 	// Editar o contato
 	public void alterarContato(JavaBeans contato) {
-		 String create = "update contatos set nome=?,fone=?,email=? where idcon=?";
+		 String update = "update contatos set nome=?,fone=?,email=? where idcon=?";
 		 		try {
 					Connection con = conectar();
-					PreparedStatement pst = con.prepareStatement(create);
+					PreparedStatement pst = con.prepareStatement(update);
 					pst.setString(1, contato.getNome());
 					pst.setString(2, contato.getFone());
 					pst.setString(3, contato.getEmail());
@@ -116,7 +150,11 @@ public class DAO {
 				}
 	}
 	
-	/** CRUD DELETE **/
+	/**
+	 *  CRUD DELETE *.
+	 *
+	 * @param contato the contato
+	 */
 	public void deletarContato(JavaBeans contato) {
 		String delete = "delete from contatos where idcon=?";
 		try {
